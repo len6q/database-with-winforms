@@ -8,12 +8,25 @@ namespace Vegetarian_Community
 {
     public sealed class User
     {
-        public int Id { get; set; }
-        
-        public string Name { get; set; }
-        
-        public string Sex { get; set; }
-        
-        public int Age { get; set; }
+        private int _id;
+        private string _name;
+        private string _sex;
+        private int _age;
+
+        public User(int id, string name, string sex, int age)
+        {
+            _id = id;
+            _name = name;
+            _sex = sex;
+            _age = age;
+        }
+
+        public int Id => _id;
+
+        public string Name => _name;
+
+        public string Sex => _sex;
+
+        public int Age => _age;
     }
 }

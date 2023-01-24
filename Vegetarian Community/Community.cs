@@ -8,28 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vegetarian_Community.Scripts;
 
 namespace Vegetarian_Community
 {
     public partial class Community : Form
     {
-        private const string CONNECTION_STRING =
-            "Server=DESKTOP-052MHJ6;Database=VegetarianCommunity;Trusted_Connection=True;";
+        private UsersFactory _factory = new UsersFactory();
+        private string _currentSex;
 
         public Community()
-        {
-            InitializeComponent();
-            Connection();
-        }
-
-        private async void Connection()
         {            
-            using(SqlConnection connection = new SqlConnection(CONNECTION_STRING))
-            {
-                await connection.OpenAsync();
-                Console.WriteLine("Connection is opening!");
-                Console.WriteLine($"Connection server: {connection.DataSource}");
-            }
+            InitializeComponent();            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -42,5 +32,24 @@ namespace Vegetarian_Community
 
         }
 
+        private void addUser_Click(object sender, EventArgs e)
+        {
+            var user = new User(
+                Convert.ToInt32(id.Text),
+                name.Text,
+                _currentSex,
+                Convert.ToInt32(age.Text));
+            _factory.InsertUser(user);
+        }
+
+        private void male_CheckedChanged(object sender, EventArgs e)
+        {
+            _currentSex = "Male";
+        }
+
+        private void female_CheckedChanged(object sender, EventArgs e)
+        {
+            _currentSex = "Female";
+        }
     }
 }
