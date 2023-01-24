@@ -1,0 +1,9 @@
+D:\DATABASE\t-sql\Vegetarian Community\bin\Debug\Vegetarian Community.exe.config
+D:\DATABASE\t-sql\Vegetarian Community\bin\Debug\Vegetarian Community.exe
+D:\DATABASE\t-sql\Vegetarian Community\bin\Debug\Vegetarian Community.pdb
+D:\DATABASE\t-sql\Vegetarian Community\obj\Debug\Vegetarian Community.csproj.AssemblyReference.cache
+D:\DATABASE\t-sql\Vegetarian Community\obj\Debug\Vegetarian_Community.Properties.Resources.resources
+D:\DATABASE\t-sql\Vegetarian Community\obj\Debug\Vegetarian Community.csproj.GenerateResource.cache
+D:\DATABASE\t-sql\Vegetarian Community\obj\Debug\Vegetarian Community.csproj.CoreCompileInputs.cache
+D:\DATABASE\t-sql\Vegetarian Community\obj\Debug\Vegetarian Community.exe
+D:\DATABASE\t-sql\Vegetarian Community\obj\Debug\Vegetarian Community.pdb
