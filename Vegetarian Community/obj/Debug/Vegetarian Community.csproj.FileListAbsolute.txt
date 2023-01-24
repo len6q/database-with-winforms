@@ -7,3 +7,7 @@ D:\DATABASE\t-sql\Vegetarian Community\obj\Debug\Vegetarian Community.csproj.Gen
 D:\DATABASE\t-sql\Vegetarian Community\obj\Debug\Vegetarian Community.csproj.CoreCompileInputs.cache
 D:\DATABASE\t-sql\Vegetarian Community\obj\Debug\Vegetarian Community.exe
 D:\DATABASE\t-sql\Vegetarian Community\obj\Debug\Vegetarian Community.pdb
+D:\DATABASE\t-sql\Vegetarian Community\obj\Debug\Vegetarian_Community.Community.resources
+D:\DATABASE\t-sql\Vegetarian Community\bin\Debug\System.Data.SqlClient.dll
+D:\DATABASE\t-sql\Vegetarian Community\bin\Debug\System.Data.SqlClient.xml
+D:\DATABASE\t-sql\Vegetarian Community\obj\Debug\Vegetarian Community.csproj.CopyComplete
