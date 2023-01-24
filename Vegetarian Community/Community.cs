@@ -23,7 +23,7 @@ namespace Vegetarian_Community
         }
 
         private async void Connection()
-        {
+        {            
             using(SqlConnection connection = new SqlConnection(CONNECTION_STRING))
             {
                 await connection.OpenAsync();
@@ -31,5 +31,16 @@ namespace Vegetarian_Community
                 Console.WriteLine($"Connection server: {connection.DataSource}");
             }
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void forwardBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
