@@ -60,7 +60,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Posts.cs" />
-    <Compile Include="Scripts\UsersFactory.cs" />
+    <Compile Include="Scripts\UsersCollection.cs" />
     <Compile Include="Scripts\User.cs" />
     <EmbeddedResource Include="Community.resx">
       <DependentUpon>Community.cs</DependentUpon>

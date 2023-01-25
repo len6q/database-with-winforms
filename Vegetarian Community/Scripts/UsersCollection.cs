@@ -8,11 +8,13 @@ using System.Configuration;
 
 namespace Vegetarian_Community.Scripts
 {
-    public sealed class UsersFactory
+    public sealed class UsersCollection
     {
         private const string CONNECTION_STRING = "dbConnectionString";
         private readonly string _configConnection = ConfigurationManager.ConnectionStrings[CONNECTION_STRING].ConnectionString;
-        
+
+        private List<User> _allUsers = new List<User>();
+
         public async void InsertUser(User user)
         {
             string sqlExpression = $"INSERT INTO Users VALUES({user.Id}, '{user.Name}', '{user.Sex}', {user.Age})";
@@ -21,7 +23,8 @@ namespace Vegetarian_Community.Scripts
                 await connection.OpenAsync();
 
                 var command = new SqlCommand(sqlExpression, connection);
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
+                _allUsers.Add(user);
             }
         }
     }

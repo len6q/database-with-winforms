@@ -13,12 +13,16 @@ namespace Vegetarian_Community
         private string _sex;
         private int _age;
 
-        public User(int id, string name, string sex, int age)
+        private static int _currentId = 0;
+
+        public User(string name, string sex, int age)
         {
-            _id = id;
+            _id = _currentId;
             _name = name;
             _sex = sex;
             _age = age;
+
+            _currentId++;
         }
 
         public int Id => _id;
