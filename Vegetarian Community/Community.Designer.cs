@@ -49,10 +49,16 @@ namespace Vegetarian_Community
             this.label2 = new System.Windows.Forms.Label();
             this.p_user_id = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.comments = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.c_text = new System.Windows.Forms.TextBox();
+            this.c_user_id = new System.Windows.Forms.TextBox();
+            this.addComment = new System.Windows.Forms.Button();
             this.post.SuspendLayout();
             this.users.SuspendLayout();
             this.sex.SuspendLayout();
             this.posts.SuspendLayout();
+            this.comments.SuspendLayout();
             this.SuspendLayout();
             // 
             // post
@@ -259,9 +265,56 @@ namespace Vegetarian_Community
             this.label1.Text = "Номер пользователя";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // comments
+            // 
+            this.comments.Controls.Add(this.addComment);
+            this.comments.Controls.Add(this.c_user_id);
+            this.comments.Controls.Add(this.c_text);
+            this.comments.Controls.Add(this.label3);
+            this.comments.Location = new System.Drawing.Point(606, 214);
+            this.comments.Name = "comments";
+            this.comments.Size = new System.Drawing.Size(289, 170);
+            this.comments.TabIndex = 4;
+            this.comments.TabStop = false;
+            this.comments.Text = "Комментарий";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(164, 20);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Номер пользователя";
+            // 
+            // c_text
+            // 
+            this.c_text.Location = new System.Drawing.Point(15, 72);
+            this.c_text.Name = "c_text";
+            this.c_text.Size = new System.Drawing.Size(255, 26);
+            this.c_text.TabIndex = 1;
+            // 
+            // c_user_id
+            // 
+            this.c_user_id.Location = new System.Drawing.Point(181, 36);
+            this.c_user_id.Name = "c_user_id";
+            this.c_user_id.Size = new System.Drawing.Size(89, 26);
+            this.c_user_id.TabIndex = 2;
+            // 
+            // addComment
+            // 
+            this.addComment.Location = new System.Drawing.Point(15, 104);
+            this.addComment.Name = "addComment";
+            this.addComment.Size = new System.Drawing.Size(255, 45);
+            this.addComment.TabIndex = 3;
+            this.addComment.Text = "Ответить";
+            this.addComment.UseVisualStyleBackColor = true;
+            this.addComment.Click += new System.EventHandler(this.addComment_Click);
+            // 
             // Community
             // 
             this.ClientSize = new System.Drawing.Size(1344, 668);
+            this.Controls.Add(this.comments);
             this.Controls.Add(this.posts);
             this.Controls.Add(this.users);
             this.Controls.Add(this.post);
@@ -275,6 +328,8 @@ namespace Vegetarian_Community
             this.sex.PerformLayout();
             this.posts.ResumeLayout(false);
             this.posts.PerformLayout();
+            this.comments.ResumeLayout(false);
+            this.comments.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -300,6 +355,11 @@ namespace Vegetarian_Community
         private System.Windows.Forms.TextBox p_title;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox p_user_id;
+        private System.Windows.Forms.GroupBox comments;
+        private System.Windows.Forms.Button addComment;
+        private System.Windows.Forms.TextBox c_user_id;
+        private System.Windows.Forms.TextBox c_text;
+        private System.Windows.Forms.Label label3;
     }
 }
 

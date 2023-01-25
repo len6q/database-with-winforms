@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Vegetarian_Community.Scripts
 {
-    public sealed class CommentCollection
+    public sealed class CommentsCollection
     {
         private const string CONNECTION_STRING = "dbConnectionString";
         private readonly string _configConnection = ConfigurationManager.ConnectionStrings[CONNECTION_STRING].ConnectionString;
@@ -17,7 +17,8 @@ namespace Vegetarian_Community.Scripts
 
         public async void InsertComment(Comment comment)
         {
-            string sqlExpression = $"";
+            string sqlExpression = $"INSERT INTO Comments VALUES({comment.Id}, '{comment.Text}', " +
+                $"'{comment.Time}', {comment.UserId}, {comment.PostId})";
             using(var connection = new SqlConnection(_configConnection))
             {
                 await connection.OpenAsync();

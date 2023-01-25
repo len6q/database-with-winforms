@@ -59,7 +59,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scripts\CommentCollection.cs" />
+    <Compile Include="Scripts\CommentsCollection.cs" />
     <Compile Include="Scripts\Post.cs" />
     <Compile Include="Scripts\PostsCollection.cs" />
     <Compile Include="Scripts\UsersCollection.cs" />

@@ -16,6 +16,7 @@ namespace Vegetarian_Community
     {
         private UsersCollection _usersCollection = new UsersCollection();
         private PostsCollection _postsCollection = new PostsCollection();
+        private CommentsCollection _commentsCollection = new CommentsCollection();
 
         public Community()
         {            
@@ -76,6 +77,15 @@ namespace Vegetarian_Community
         private void users_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void addComment_Click(object sender, EventArgs e)
+        {
+            var comment = new Comment(
+                c_text.Text,
+                Convert.ToInt32(c_user_id.Text),
+                0);
+            _commentsCollection.InsertComment(comment);
         }
     }
 }
