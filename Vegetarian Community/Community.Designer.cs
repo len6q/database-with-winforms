@@ -54,6 +54,7 @@ namespace Vegetarian_Community
             this.c_user_id = new System.Windows.Forms.TextBox();
             this.c_text = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.deleteBtn = new System.Windows.Forms.Button();
             this.post.SuspendLayout();
             this.users.SuspendLayout();
             this.sex.SuspendLayout();
@@ -63,6 +64,7 @@ namespace Vegetarian_Community
             // 
             // post
             // 
+            this.post.Controls.Add(this.deleteBtn);
             this.post.Controls.Add(this.backBtn);
             this.post.Controls.Add(this.info);
             this.post.Controls.Add(this.l_title_post);
@@ -311,6 +313,16 @@ namespace Vegetarian_Community
             this.label3.TabIndex = 0;
             this.label3.Text = "Номер пользователя";
             // 
+            // deleteBtn
+            // 
+            this.deleteBtn.Location = new System.Drawing.Point(62, 481);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(451, 50);
+            this.deleteBtn.TabIndex = 9;
+            this.deleteBtn.Text = "Удалить комментарий";
+            this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
+            // 
             // Community
             // 
             this.ClientSize = new System.Drawing.Size(1061, 663);
@@ -361,6 +373,7 @@ namespace Vegetarian_Community
         private System.Windows.Forms.TextBox c_user_id;
         private System.Windows.Forms.TextBox c_text;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button deleteBtn;
     }
 }
 

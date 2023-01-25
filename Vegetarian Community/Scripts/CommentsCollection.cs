@@ -36,10 +36,10 @@ namespace Vegetarian_Community.Scripts
 
         public void CreateComment(string text, int userId, int postId, ListBox chat)
         {
-            var comment = new Comment(Count, text, userId, postId);
+            var comment = new Comment(Count, text, DateTime.Now, userId, postId);
             InsertComment(comment);
             ShowComments(postId, chat);
-        }
+        }        
 
         private async void InsertComment(Comment comment)
         {
@@ -56,10 +56,8 @@ namespace Vegetarian_Community.Scripts
 
         public async void ShowComments(int currentPost, ListBox infoBox)
         {
-            infoBox.Items.Clear();
-            var sqlExpression = $"SELECT * FROM Comments " +
-                $"JOIN Users ON users_ID = c_users_ID " +
-                $"WHERE c_posts_ID = {currentPost}";
+            infoBox.Items.Clear();            
+            var sqlExpression = $"SELECT * FROM Comments WHERE c_posts_ID = {currentPost}";
             using(var connection = new SqlConnection(_configConnection))
             {
                 await connection.OpenAsync();
@@ -68,16 +66,30 @@ namespace Vegetarian_Community.Scripts
                 {
                     while (await reader.ReadAsync())
                     {
-                        var userId = reader["c_users_ID"];
-                        var text = reader["c_text"];
-                        var time = reader["c_time"];
-                        var name = reader["u_name"];
+                        var commentId = reader.GetInt32(0);
+                        var text = reader.GetString(1);
+                        var time = reader.GetDateTime(2);
+                        var userId = reader.GetInt32(3);                        
 
-                        var comment = $"{name}({userId}) : {text} | {time}";
-                        infoBox.Items.Add(comment);                             
+                        var comment = new Comment(commentId, text, time, userId, currentPost);
+                        infoBox.Items.Add(comment);
                     }
                 }
             }            
+        }
+
+        public async void RemoveComment(int currentPost, ListBox infoBox)
+        {
+            var comment = (Comment)infoBox.SelectedItem;
+            var sqlExpression = $"DELETE Comments WHERE comments_ID = {comment.Id}";
+            using(var connection = new SqlConnection(_configConnection))
+            {
+                await connection.OpenAsync();
+                var command = new SqlCommand(sqlExpression, connection);
+                await command.ExecuteNonQueryAsync();
+            }
+
+            ShowComments(currentPost, infoBox);
         }
     }
 }

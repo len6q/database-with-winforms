@@ -66,6 +66,16 @@ namespace Vegetarian_Community
                 info);            
         }
 
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            if(info.SelectedItem != null)
+            {
+                _commentsCollection.RemoveComment(
+                _postsCollection.CurrentPost,
+                info);
+            }            
+        }
+
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -98,6 +108,6 @@ namespace Vegetarian_Community
         {
 
         }
-
+     
     }
 }
