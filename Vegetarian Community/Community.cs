@@ -14,7 +14,8 @@ namespace Vegetarian_Community
 {
     public partial class Community : Form
     {
-        private UsersCollection _collection = new UsersCollection();        
+        private UsersCollection _usersCollection = new UsersCollection();
+        private PostsCollection _postsCollection = new PostsCollection();
 
         public Community()
         {            
@@ -33,7 +34,7 @@ namespace Vegetarian_Community
                 name.Text,
                 currentSex,
                 Convert.ToInt32(age.Text));
-            _collection.InsertUser(user);
+            _usersCollection.InsertUser(user);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -61,7 +62,10 @@ namespace Vegetarian_Community
 
         private void addPost_Click(object sender, EventArgs e)
         {
-
+            var post = new Post(
+                p_title.Text,
+                Convert.ToInt32(p_user_id.Text));
+            _postsCollection.InsertPost(post);
         }
 
         private void posts_Enter(object sender, EventArgs e)

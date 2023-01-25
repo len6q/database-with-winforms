@@ -47,7 +47,7 @@ namespace Vegetarian_Community
             this.addPost = new System.Windows.Forms.Button();
             this.p_title = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.p_id = new System.Windows.Forms.TextBox();
+            this.p_user_id = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.post.SuspendLayout();
             this.users.SuspendLayout();
@@ -206,7 +206,7 @@ namespace Vegetarian_Community
             this.posts.Controls.Add(this.addPost);
             this.posts.Controls.Add(this.p_title);
             this.posts.Controls.Add(this.label2);
-            this.posts.Controls.Add(this.p_id);
+            this.posts.Controls.Add(this.p_user_id);
             this.posts.Controls.Add(this.label1);
             this.posts.Location = new System.Drawing.Point(12, 13);
             this.posts.Name = "posts";
@@ -242,12 +242,12 @@ namespace Vegetarian_Community
             this.label2.TabIndex = 6;
             this.label2.Text = "Вопрос";
             // 
-            // p_id
+            // p_user_id
             // 
-            this.p_id.Location = new System.Drawing.Point(176, 21);
-            this.p_id.Name = "p_id";
-            this.p_id.Size = new System.Drawing.Size(100, 26);
-            this.p_id.TabIndex = 5;
+            this.p_user_id.Location = new System.Drawing.Point(176, 21);
+            this.p_user_id.Name = "p_user_id";
+            this.p_user_id.Size = new System.Drawing.Size(100, 26);
+            this.p_user_id.TabIndex = 5;
             // 
             // label1
             // 
@@ -299,7 +299,7 @@ namespace Vegetarian_Community
         private System.Windows.Forms.Button addPost;
         private System.Windows.Forms.TextBox p_title;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox p_id;
+        private System.Windows.Forms.TextBox p_user_id;
     }
 }
 
