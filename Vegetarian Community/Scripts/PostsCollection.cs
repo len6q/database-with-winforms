@@ -13,7 +13,9 @@ namespace Vegetarian_Community.Scripts
         private const string CONNECTION_STRING = "dbConnectionString";
         private readonly string _configConnection = ConfigurationManager.ConnectionStrings[CONNECTION_STRING].ConnectionString;
 
-        private List<Post> _allPosts = new List<Post>(); 
+        private List<Post> _allPosts = new List<Post>();
+
+        public int Length => _allPosts.Count - 1;
 
         public async void InsertPost(Post post)
         {

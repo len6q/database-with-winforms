@@ -18,6 +18,8 @@ namespace Vegetarian_Community
         private PostsCollection _postsCollection = new PostsCollection();
         private CommentsCollection _commentsCollection = new CommentsCollection();
 
+        private int _currentPost = 0;
+
         public Community()
         {            
             InitializeComponent();            
@@ -25,7 +27,18 @@ namespace Vegetarian_Community
 
         private void forwardBtn_Click(object sender, EventArgs e)
         {
+            if(_currentPost > _postsCollection.Length)
+            {
+                _currentPost++;
+            }
+        }
 
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            if (_currentPost > 0)
+            {
+                _currentPost--;
+            }
         }
 
         private void addUser_Click(object sender, EventArgs e)
@@ -36,6 +49,25 @@ namespace Vegetarian_Community
                 currentSex,
                 Convert.ToInt32(age.Text));
             _usersCollection.InsertUser(user);
+        }
+
+        private void addPost_Click(object sender, EventArgs e)
+        {
+            var post = new Post(
+                p_title.Text,
+                Convert.ToInt32(p_user_id.Text));
+            _postsCollection.InsertPost(post);
+        }
+
+        private void addComment_Click(object sender, EventArgs e)
+        {            
+            var comment = new Comment(
+                c_text.Text,
+                Convert.ToInt32(c_user_id.Text),
+                _currentPost);
+            _commentsCollection.InsertComment(comment);
+
+            _commentsCollection.ShowComments(_currentPost, info);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -61,14 +93,6 @@ namespace Vegetarian_Community
 
         }
 
-        private void addPost_Click(object sender, EventArgs e)
-        {
-            var post = new Post(
-                p_title.Text,
-                Convert.ToInt32(p_user_id.Text));
-            _postsCollection.InsertPost(post);
-        }
-
         private void posts_Enter(object sender, EventArgs e)
         {
 
@@ -77,15 +101,6 @@ namespace Vegetarian_Community
         private void users_Enter(object sender, EventArgs e)
         {
 
-        }
-
-        private void addComment_Click(object sender, EventArgs e)
-        {
-            var comment = new Comment(
-                c_text.Text,
-                Convert.ToInt32(c_user_id.Text),
-                0);
-            _commentsCollection.InsertComment(comment);
         }
     }
 }

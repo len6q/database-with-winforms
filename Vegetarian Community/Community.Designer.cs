@@ -83,6 +83,7 @@ namespace Vegetarian_Community
             this.backBtn.TabIndex = 8;
             this.backBtn.Text = "<";
             this.backBtn.UseVisualStyleBackColor = true;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
             // info
             // 
