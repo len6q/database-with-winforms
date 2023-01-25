@@ -10,12 +10,12 @@ using System.Windows.Forms;
 namespace Vegetarian_Community.Scripts
 {
     public sealed class CommentsCollection
-    {
+    {        
         private const string CONNECTION_STRING = "dbConnectionString";
         private readonly string _configConnection = ConfigurationManager.ConnectionStrings[CONNECTION_STRING].ConnectionString;
 
         private List<Comment> _allComments = new List<Comment>();
-
+        
         private int Count
         {
             get
@@ -51,7 +51,7 @@ namespace Vegetarian_Community.Scripts
             }
         }
 
-        private async void ShowComments(int currentPost, ListBox infoBox)
+        public async void ShowComments(int currentPost, ListBox infoBox)
         {
             infoBox.Items.Clear();
             var sqlExpression = $"SELECT * FROM Comments WHERE c_posts_ID = {currentPost}";

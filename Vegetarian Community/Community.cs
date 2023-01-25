@@ -18,27 +18,27 @@ namespace Vegetarian_Community
         private PostsCollection _postsCollection = new PostsCollection();
         private CommentsCollection _commentsCollection = new CommentsCollection();
 
-        private int _currentPost = 0;
+        private AppView _view;
 
         public Community()
         {            
             InitializeComponent();            
         }
 
+        private void Community_Load(object sender, EventArgs e)
+        {
+            _view = new AppView(_postsCollection, _commentsCollection, l_title_post, info);            
+        }
+        
+
         private void forwardBtn_Click(object sender, EventArgs e)
         {
-            if(_currentPost > _postsCollection.Count)
-            {
-                _currentPost++;
-            }            
+            _postsCollection.Move(true);           
         }
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            if (_currentPost > 0)
-            {
-                _currentPost--;
-            }
+            _postsCollection.Move();
         }
 
         private void addUser_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace Vegetarian_Community
             _commentsCollection.CreateComment(
                 c_text.Text,
                 Convert.ToInt32(c_user_id.Text),
-                _currentPost,
+                _postsCollection.CurrentPost,
                 info);            
         }
 
@@ -98,5 +98,6 @@ namespace Vegetarian_Community
         {
 
         }
+
     }
 }

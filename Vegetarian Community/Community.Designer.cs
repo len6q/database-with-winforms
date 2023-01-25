@@ -50,10 +50,10 @@ namespace Vegetarian_Community
             this.p_user_id = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comments = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.c_text = new System.Windows.Forms.TextBox();
-            this.c_user_id = new System.Windows.Forms.TextBox();
             this.addComment = new System.Windows.Forms.Button();
+            this.c_user_id = new System.Windows.Forms.TextBox();
+            this.c_text = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.post.SuspendLayout();
             this.users.SuspendLayout();
             this.sex.SuspendLayout();
@@ -101,9 +101,8 @@ namespace Vegetarian_Community
             this.l_title_post.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.l_title_post.Location = new System.Drawing.Point(6, 41);
             this.l_title_post.Name = "l_title_post";
-            this.l_title_post.Size = new System.Drawing.Size(90, 21);
+            this.l_title_post.Size = new System.Drawing.Size(0, 21);
             this.l_title_post.TabIndex = 5;
-            this.l_title_post.Text = "Заголовок";
             // 
             // forwardBtn
             // 
@@ -279,29 +278,6 @@ namespace Vegetarian_Community
             this.comments.TabStop = false;
             this.comments.Text = "Комментарий";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 36);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(164, 20);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Номер пользователя";
-            // 
-            // c_text
-            // 
-            this.c_text.Location = new System.Drawing.Point(15, 72);
-            this.c_text.Name = "c_text";
-            this.c_text.Size = new System.Drawing.Size(255, 26);
-            this.c_text.TabIndex = 1;
-            // 
-            // c_user_id
-            // 
-            this.c_user_id.Location = new System.Drawing.Point(181, 36);
-            this.c_user_id.Name = "c_user_id";
-            this.c_user_id.Size = new System.Drawing.Size(89, 26);
-            this.c_user_id.TabIndex = 2;
-            // 
             // addComment
             // 
             this.addComment.Location = new System.Drawing.Point(15, 104);
@@ -312,6 +288,29 @@ namespace Vegetarian_Community
             this.addComment.UseVisualStyleBackColor = true;
             this.addComment.Click += new System.EventHandler(this.addComment_Click);
             // 
+            // c_user_id
+            // 
+            this.c_user_id.Location = new System.Drawing.Point(181, 36);
+            this.c_user_id.Name = "c_user_id";
+            this.c_user_id.Size = new System.Drawing.Size(89, 26);
+            this.c_user_id.TabIndex = 2;
+            // 
+            // c_text
+            // 
+            this.c_text.Location = new System.Drawing.Point(15, 72);
+            this.c_text.Name = "c_text";
+            this.c_text.Size = new System.Drawing.Size(255, 26);
+            this.c_text.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(164, 20);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Номер пользователя";
+            // 
             // Community
             // 
             this.ClientSize = new System.Drawing.Size(1344, 668);
@@ -321,6 +320,7 @@ namespace Vegetarian_Community
             this.Controls.Add(this.post);
             this.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "Community";
+            this.Load += new System.EventHandler(this.Community_Load);
             this.post.ResumeLayout(false);
             this.post.PerformLayout();
             this.users.ResumeLayout(false);
