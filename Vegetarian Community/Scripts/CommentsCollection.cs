@@ -91,5 +91,19 @@ namespace Vegetarian_Community.Scripts
 
             ShowComments(currentPost, infoBox);
         }
+
+        public async void UpdateComment(int currentPost, string updateText, ListBox infoBox)
+        {
+            var comment = (Comment)infoBox.SelectedItem;
+            var sqlExpression = $"UPDATE Comments SET c_text = '{updateText}' WHERE comments_ID = {comment.Id}";
+            using(var connection = new SqlConnection(_configConnection))
+            {
+                await connection.OpenAsync();
+                var command = new SqlCommand(sqlExpression, connection);
+                await command.ExecuteNonQueryAsync();
+            }
+
+            ShowComments(currentPost, infoBox);
+        }
     }
 }

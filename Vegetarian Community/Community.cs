@@ -63,7 +63,7 @@ namespace Vegetarian_Community
                 c_text.Text,
                 Convert.ToInt32(c_user_id.Text),
                 _postsCollection.CurrentPost,
-                info);            
+                info);
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
@@ -76,6 +76,16 @@ namespace Vegetarian_Community
             }            
         }
 
+        private void updateBtn_Click(object sender, EventArgs e)
+        {
+            if(info.SelectedItem != null)
+            {
+                _commentsCollection.UpdateComment(
+                    _postsCollection.CurrentPost,
+                    updateText.Text,
+                    info);
+            }
+        }
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -108,6 +118,6 @@ namespace Vegetarian_Community
         {
 
         }
-     
-    }
+        
+    }  
 }

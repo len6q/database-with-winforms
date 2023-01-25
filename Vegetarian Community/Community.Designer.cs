@@ -49,16 +49,20 @@ namespace Vegetarian_Community
             this.label2 = new System.Windows.Forms.Label();
             this.p_user_id = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.deleteBtn = new System.Windows.Forms.Button();
+            this.updateCommentBox = new System.Windows.Forms.GroupBox();
+            this.updateBtn = new System.Windows.Forms.Button();
+            this.updateText = new System.Windows.Forms.TextBox();
             this.comments = new System.Windows.Forms.GroupBox();
-            this.addComment = new System.Windows.Forms.Button();
             this.c_user_id = new System.Windows.Forms.TextBox();
             this.c_text = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.deleteBtn = new System.Windows.Forms.Button();
+            this.addComment = new System.Windows.Forms.Button();
             this.post.SuspendLayout();
             this.users.SuspendLayout();
             this.sex.SuspendLayout();
             this.posts.SuspendLayout();
+            this.updateCommentBox.SuspendLayout();
             this.comments.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -203,7 +207,7 @@ namespace Vegetarian_Community
             // 
             this.addUser.Location = new System.Drawing.Point(6, 131);
             this.addUser.Name = "addUser";
-            this.addUser.Size = new System.Drawing.Size(432, 37);
+            this.addUser.Size = new System.Drawing.Size(432, 40);
             this.addUser.TabIndex = 0;
             this.addUser.Text = "Присоединиться к сообществу";
             this.addUser.UseVisualStyleBackColor = true;
@@ -267,28 +271,56 @@ namespace Vegetarian_Community
             this.label1.Text = "Номер пользователя";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // deleteBtn
+            // 
+            this.deleteBtn.Location = new System.Drawing.Point(62, 481);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(451, 50);
+            this.deleteBtn.TabIndex = 9;
+            this.deleteBtn.Text = "Удалить комментарий";
+            this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
+            // 
+            // updateCommentBox
+            // 
+            this.updateCommentBox.Controls.Add(this.updateText);
+            this.updateCommentBox.Controls.Add(this.updateBtn);
+            this.updateCommentBox.Location = new System.Drawing.Point(606, 449);
+            this.updateCommentBox.Name = "updateCommentBox";
+            this.updateCommentBox.Size = new System.Drawing.Size(444, 170);
+            this.updateCommentBox.TabIndex = 5;
+            this.updateCommentBox.TabStop = false;
+            this.updateCommentBox.Text = "Редактировать комментарий";
+            // 
+            // updateBtn
+            // 
+            this.updateBtn.Location = new System.Drawing.Point(6, 86);
+            this.updateBtn.Name = "updateBtn";
+            this.updateBtn.Size = new System.Drawing.Size(432, 40);
+            this.updateBtn.TabIndex = 1;
+            this.updateBtn.Text = "Редактировать";
+            this.updateBtn.UseVisualStyleBackColor = true;
+            this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
+            // 
+            // updateText
+            // 
+            this.updateText.Location = new System.Drawing.Point(6, 45);
+            this.updateText.Name = "updateText";
+            this.updateText.Size = new System.Drawing.Size(432, 26);
+            this.updateText.TabIndex = 2;
+            // 
             // comments
             // 
             this.comments.Controls.Add(this.addComment);
             this.comments.Controls.Add(this.c_user_id);
             this.comments.Controls.Add(this.c_text);
             this.comments.Controls.Add(this.label3);
-            this.comments.Location = new System.Drawing.Point(606, 214);
+            this.comments.Location = new System.Drawing.Point(606, 241);
             this.comments.Name = "comments";
-            this.comments.Size = new System.Drawing.Size(289, 170);
-            this.comments.TabIndex = 4;
+            this.comments.Size = new System.Drawing.Size(444, 170);
+            this.comments.TabIndex = 7;
             this.comments.TabStop = false;
             this.comments.Text = "Комментарий";
-            // 
-            // addComment
-            // 
-            this.addComment.Location = new System.Drawing.Point(15, 104);
-            this.addComment.Name = "addComment";
-            this.addComment.Size = new System.Drawing.Size(255, 45);
-            this.addComment.TabIndex = 3;
-            this.addComment.Text = "Ответить";
-            this.addComment.UseVisualStyleBackColor = true;
-            this.addComment.Click += new System.EventHandler(this.addComment_Click);
             // 
             // c_user_id
             // 
@@ -299,9 +331,9 @@ namespace Vegetarian_Community
             // 
             // c_text
             // 
-            this.c_text.Location = new System.Drawing.Point(15, 72);
+            this.c_text.Location = new System.Drawing.Point(6, 72);
             this.c_text.Name = "c_text";
-            this.c_text.Size = new System.Drawing.Size(255, 26);
+            this.c_text.Size = new System.Drawing.Size(432, 26);
             this.c_text.TabIndex = 1;
             // 
             // label3
@@ -313,20 +345,21 @@ namespace Vegetarian_Community
             this.label3.TabIndex = 0;
             this.label3.Text = "Номер пользователя";
             // 
-            // deleteBtn
+            // addComment
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(62, 481);
-            this.deleteBtn.Name = "deleteBtn";
-            this.deleteBtn.Size = new System.Drawing.Size(451, 50);
-            this.deleteBtn.TabIndex = 9;
-            this.deleteBtn.Text = "Удалить комментарий";
-            this.deleteBtn.UseVisualStyleBackColor = true;
-            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
+            this.addComment.Location = new System.Drawing.Point(6, 114);
+            this.addComment.Name = "addComment";
+            this.addComment.Size = new System.Drawing.Size(432, 40);
+            this.addComment.TabIndex = 4;
+            this.addComment.Text = "Ответить";
+            this.addComment.UseVisualStyleBackColor = true;
+            this.addComment.Click += new System.EventHandler(this.addComment_Click);
             // 
             // Community
             // 
             this.ClientSize = new System.Drawing.Size(1061, 663);
             this.Controls.Add(this.comments);
+            this.Controls.Add(this.updateCommentBox);
             this.Controls.Add(this.posts);
             this.Controls.Add(this.users);
             this.Controls.Add(this.post);
@@ -341,6 +374,8 @@ namespace Vegetarian_Community
             this.sex.PerformLayout();
             this.posts.ResumeLayout(false);
             this.posts.PerformLayout();
+            this.updateCommentBox.ResumeLayout(false);
+            this.updateCommentBox.PerformLayout();
             this.comments.ResumeLayout(false);
             this.comments.PerformLayout();
             this.ResumeLayout(false);
@@ -368,12 +403,15 @@ namespace Vegetarian_Community
         private System.Windows.Forms.TextBox p_title;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox p_user_id;
+        private System.Windows.Forms.Button deleteBtn;
+        private System.Windows.Forms.GroupBox updateCommentBox;
+        private System.Windows.Forms.Button updateBtn;
+        private System.Windows.Forms.TextBox updateText;
         private System.Windows.Forms.GroupBox comments;
-        private System.Windows.Forms.Button addComment;
         private System.Windows.Forms.TextBox c_user_id;
         private System.Windows.Forms.TextBox c_text;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button deleteBtn;
+        private System.Windows.Forms.Button addComment;
     }
 }
 
