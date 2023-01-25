@@ -18,7 +18,6 @@ namespace Vegetarian_Community.Scripts
         public async void InsertPost(Post post)
         {
             string sqlExpression = $"INSERT INTO Posts VALUES({post.Id}, '{post.Text}', {post.UserId})";
-
             using(var connection = new SqlConnection(_configConnection))
             {
                 await connection.OpenAsync();

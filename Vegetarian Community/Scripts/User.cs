@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vegetarian_Community
+namespace Vegetarian_Community.Scripts
 {
     public sealed class User
     {

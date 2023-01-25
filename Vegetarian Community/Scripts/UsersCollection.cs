@@ -18,7 +18,7 @@ namespace Vegetarian_Community.Scripts
         public async void InsertUser(User user)
         {
             string sqlExpression = $"INSERT INTO Users VALUES({user.Id}, '{user.Name}', '{user.Sex}', {user.Age})";
-            using(SqlConnection connection = new SqlConnection(_configConnection))
+            using(var connection = new SqlConnection(_configConnection))
             {
                 await connection.OpenAsync();
 
