@@ -20,12 +20,16 @@ namespace Vegetarian_Community.Scripts
         {
             get
             {
-                var sqlExpression = $"SELECT COUNT(*) FROM Comments";
+                var sqlExpression = $"SELECT MAX(comments_ID) FROM Comments";
                 using (var connection = new SqlConnection(_configConnection))
                 {
                     connection.Open();
-                    var command = new SqlCommand(sqlExpression, connection);
-                    return Convert.ToInt32(command.ExecuteScalar());
+                    var command = new SqlCommand(sqlExpression, connection);                    
+                    if(DBNull.Value.Equals(command.ExecuteScalar()))
+                    {
+                        return 0;
+                    }
+                    return Convert.ToInt32(command.ExecuteScalar()) + 1;
                 }
             }
         }
@@ -43,8 +47,7 @@ namespace Vegetarian_Community.Scripts
                 $"'{comment.Time}', {comment.UserId}, {comment.PostId})";
             using(var connection = new SqlConnection(_configConnection))
             {
-                await connection.OpenAsync();
-
+                await connection.OpenAsync();                
                 var command = new SqlCommand(sqlExpression, connection);
                 await command.ExecuteNonQueryAsync();
                 _allComments.Add(comment);
@@ -54,7 +57,9 @@ namespace Vegetarian_Community.Scripts
         public async void ShowComments(int currentPost, ListBox infoBox)
         {
             infoBox.Items.Clear();
-            var sqlExpression = $"SELECT * FROM Comments WHERE c_posts_ID = {currentPost}";
+            var sqlExpression = $"SELECT * FROM Comments " +
+                $"JOIN Users ON users_ID = c_users_ID " +
+                $"WHERE c_posts_ID = {currentPost}";
             using(var connection = new SqlConnection(_configConnection))
             {
                 await connection.OpenAsync();
@@ -63,12 +68,13 @@ namespace Vegetarian_Community.Scripts
                 {
                     while (await reader.ReadAsync())
                     {
-                        int userId = reader.GetInt32(3);
-                        string text = reader.GetString(1);
-                        DateTime time = reader.GetDateTime(2);
+                        var userId = reader["c_users_ID"];
+                        var text = reader["c_text"];
+                        var time = reader["c_time"];
+                        var name = reader["u_name"];
 
-                        var comment = $"{userId}: {text} | {time}";
-                        infoBox.Items.Add(comment);                       
+                        var comment = $"{name}({userId}) : {text} | {time}";
+                        infoBox.Items.Add(comment);                             
                     }
                 }
             }            

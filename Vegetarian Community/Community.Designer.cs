@@ -313,7 +313,7 @@ namespace Vegetarian_Community
             // 
             // Community
             // 
-            this.ClientSize = new System.Drawing.Size(1344, 668);
+            this.ClientSize = new System.Drawing.Size(1061, 663);
             this.Controls.Add(this.comments);
             this.Controls.Add(this.posts);
             this.Controls.Add(this.users);

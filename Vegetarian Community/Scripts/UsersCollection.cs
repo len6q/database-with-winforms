@@ -19,12 +19,16 @@ namespace Vegetarian_Community.Scripts
         {
             get
             {
-                var sqlExpression = $"SELECT COUNT(*) FROM Users";
+                var sqlExpression = $"SELECT MAX(users_ID) FROM Users";
                 using (var connection = new SqlConnection(_configConnection))
                 {
                     connection.Open();
                     var command = new SqlCommand(sqlExpression, connection);
-                    return Convert.ToInt32(command.ExecuteScalar());
+                    if (DBNull.Value.Equals(command.ExecuteScalar()))
+                    {
+                        return 0;
+                    }
+                    return Convert.ToInt32(command.ExecuteScalar()) + 1;
                 }
             }
         }
