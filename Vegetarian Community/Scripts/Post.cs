@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Vegetarian_Community.Scripts
+﻿namespace Vegetarian_Community.Scripts
 {
-    public sealed class Post
+    public struct Post
     {
         private int _id;
         private string _text;
