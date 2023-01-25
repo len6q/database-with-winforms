@@ -13,16 +13,12 @@ namespace Vegetarian_Community.Scripts
         private int _userId;
         private int _postId;
 
-        private static int _currentId = 0;
-
-        public Comment(string text, int userId, int postId)
+        public Comment(int currentId, string text, int userId, int postId)
         {
-            _id = _currentId;
+            _id = currentId;
             _text = text;
             _userId = userId;
             _postId = postId;
-
-            _currentId++;
         }
 
         public int Id => _id;

@@ -15,7 +15,27 @@ namespace Vegetarian_Community.Scripts
 
         private List<User> _allUsers = new List<User>();
 
-        public async void InsertUser(User user)
+        private int Count
+        {
+            get
+            {
+                var sqlExpression = $"SELECT COUNT(*) FROM Users";
+                using (var connection = new SqlConnection(_configConnection))
+                {
+                    connection.Open();
+                    var command = new SqlCommand(sqlExpression, connection);
+                    return Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+        }
+
+        public void CreateUser(string name, string currentSex, int age)
+        {
+            var user = new User(Count, name, currentSex, age);
+            InsertUser(user);
+        }
+
+        private async void InsertUser(User user)
         {
             string sqlExpression = $"INSERT INTO Users VALUES({user.Id}, '{user.Name}', '{user.Sex}', {user.Age})";
             using(var connection = new SqlConnection(_configConnection))

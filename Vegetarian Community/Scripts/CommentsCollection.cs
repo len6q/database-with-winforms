@@ -16,7 +16,28 @@ namespace Vegetarian_Community.Scripts
 
         private List<Comment> _allComments = new List<Comment>();
 
-        public async void InsertComment(Comment comment)
+        private int Count
+        {
+            get
+            {
+                var sqlExpression = $"SELECT COUNT(*) FROM Comments";
+                using (var connection = new SqlConnection(_configConnection))
+                {
+                    connection.Open();
+                    var command = new SqlCommand(sqlExpression, connection);
+                    return Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+        }
+
+        public void CreateComment(string text, int userId, int postId, ListBox chat)
+        {
+            var comment = new Comment(Count, text, userId, postId);
+            InsertComment(comment);
+            ShowComments(postId, chat);
+        }
+
+        private async void InsertComment(Comment comment)
         {
             string sqlExpression = $"INSERT INTO Comments VALUES({comment.Id}, '{comment.Text}', " +
                 $"'{comment.Time}', {comment.UserId}, {comment.PostId})";
@@ -30,8 +51,9 @@ namespace Vegetarian_Community.Scripts
             }
         }
 
-        public async void ShowComments(int currentPost, ListBox infoBox)
-        {                     
+        private async void ShowComments(int currentPost, ListBox infoBox)
+        {
+            infoBox.Items.Clear();
             var sqlExpression = $"SELECT * FROM Comments WHERE c_posts_ID = {currentPost}";
             using(var connection = new SqlConnection(_configConnection))
             {

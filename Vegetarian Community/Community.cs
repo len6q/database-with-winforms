@@ -27,10 +27,10 @@ namespace Vegetarian_Community
 
         private void forwardBtn_Click(object sender, EventArgs e)
         {
-            if(_currentPost > _postsCollection.Length)
+            if(_currentPost > _postsCollection.Count)
             {
                 _currentPost++;
-            }
+            }            
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -44,30 +44,26 @@ namespace Vegetarian_Community
         private void addUser_Click(object sender, EventArgs e)
         {
             var currentSex = male.Checked ? "Male" : "Female";
-            var user = new User(
-                name.Text,
-                currentSex,
-                Convert.ToInt32(age.Text));
-            _usersCollection.InsertUser(user);
+            _usersCollection.CreateUser(
+                name.Text, 
+                currentSex, 
+                Convert.ToInt32(age.Text));            
         }
 
         private void addPost_Click(object sender, EventArgs e)
         {
-            var post = new Post(
+            _postsCollection.CreatePost(
                 p_title.Text,
                 Convert.ToInt32(p_user_id.Text));
-            _postsCollection.InsertPost(post);
         }
 
         private void addComment_Click(object sender, EventArgs e)
-        {            
-            var comment = new Comment(
+        {
+            _commentsCollection.CreateComment(
                 c_text.Text,
                 Convert.ToInt32(c_user_id.Text),
-                _currentPost);
-            _commentsCollection.InsertComment(comment);
-
-            _commentsCollection.ShowComments(_currentPost, info);
+                _currentPost,
+                info);            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)

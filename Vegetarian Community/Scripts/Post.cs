@@ -12,15 +12,11 @@ namespace Vegetarian_Community.Scripts
         private string _text;
         private int _userId;
 
-        private static int _currentId = 0;
-
-        public Post(string text, int userId)
+        public Post(int currentId, string text, int userId)
         {
-            _id = _currentId;
+            _id = currentId;
             _text = text;
-            _userId = userId;
-
-            _currentId++;
+            _userId = userId;            
         }
 
         public int Id => _id;

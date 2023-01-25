@@ -32,7 +32,7 @@ namespace Vegetarian_Community
             this.post = new System.Windows.Forms.GroupBox();
             this.backBtn = new System.Windows.Forms.Button();
             this.info = new System.Windows.Forms.ListBox();
-            this.titlePost = new System.Windows.Forms.Label();
+            this.l_title_post = new System.Windows.Forms.Label();
             this.forwardBtn = new System.Windows.Forms.Button();
             this.users = new System.Windows.Forms.GroupBox();
             this.age = new System.Windows.Forms.TextBox();
@@ -65,7 +65,7 @@ namespace Vegetarian_Community
             // 
             this.post.Controls.Add(this.backBtn);
             this.post.Controls.Add(this.info);
-            this.post.Controls.Add(this.titlePost);
+            this.post.Controls.Add(this.l_title_post);
             this.post.Controls.Add(this.forwardBtn);
             this.post.Location = new System.Drawing.Point(12, 119);
             this.post.Name = "post";
@@ -95,15 +95,15 @@ namespace Vegetarian_Community
             this.info.TabIndex = 6;
             this.info.SelectedIndexChanged += new System.EventHandler(this.info_SelectedIndexChanged);
             // 
-            // titlePost
+            // l_title_post
             // 
-            this.titlePost.AutoSize = true;
-            this.titlePost.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.titlePost.Location = new System.Drawing.Point(6, 41);
-            this.titlePost.Name = "titlePost";
-            this.titlePost.Size = new System.Drawing.Size(90, 21);
-            this.titlePost.TabIndex = 5;
-            this.titlePost.Text = "Заголовок";
+            this.l_title_post.AutoSize = true;
+            this.l_title_post.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.l_title_post.Location = new System.Drawing.Point(6, 41);
+            this.l_title_post.Name = "l_title_post";
+            this.l_title_post.Size = new System.Drawing.Size(90, 21);
+            this.l_title_post.TabIndex = 5;
+            this.l_title_post.Text = "Заголовок";
             // 
             // forwardBtn
             // 
@@ -346,7 +346,7 @@ namespace Vegetarian_Community
         private System.Windows.Forms.TextBox name;
         private System.Windows.Forms.Label l_name;
         private System.Windows.Forms.TextBox age;
-        private System.Windows.Forms.Label titlePost;
+        private System.Windows.Forms.Label l_title_post;
         private System.Windows.Forms.ListBox info;
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Button addUser;

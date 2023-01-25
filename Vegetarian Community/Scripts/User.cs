@@ -11,18 +11,14 @@ namespace Vegetarian_Community.Scripts
         private int _id;
         private string _name;
         private string _sex;
-        private int _age;
+        private int _age;        
 
-        private static int _currentId = 0;
-
-        public User(string name, string sex, int age)
+        public User(int currentId, string name, string sex, int age)
         {
-            _id = _currentId;
+            _id = currentId;
             _name = name;
             _sex = sex;
             _age = age;
-
-            _currentId++;
         }
 
         public int Id => _id;
