@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Vegetarian_Community.Scripts
@@ -13,7 +15,12 @@ namespace Vegetarian_Community.Scripts
 
         private List<Comment> _allComments = new List<Comment>();
         
-        private int Count
+        public CommentsCollection()
+        {
+            FillBuffer();
+        }
+
+        private int MaxValue
         {
             get
             {
@@ -31,14 +38,38 @@ namespace Vegetarian_Community.Scripts
             }
         }
 
-        public void CreateComment(string text, int userId, int postId, ListBox chat)
+        private void FillBuffer()
         {
-            var comment = new Comment(Count, text, DateTime.Now, userId, postId);
-            InsertComment(comment);
+            var sqlExpression = $"SELECT * FROM Comments";
+            using (var connection = new SqlConnection(_configConnection))
+            {
+                connection.Open();
+                var command = new SqlCommand(sqlExpression, connection);
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var commentId = reader.GetInt32(0);
+                        var text = reader.GetString(1);
+                        var time = reader.GetDateTime(2);
+                        var userId = reader.GetInt32(3);
+                        var postId = reader.GetInt32(4);
+
+                        var comment = new Comment(commentId, text, time, userId, postId);
+                        _allComments.Add(comment);
+                    }
+                }
+            }
+        }
+
+        public async void CreateComment(string text, int userId, int postId, ListBox chat)
+        {
+            var comment = new Comment(MaxValue, text, DateTime.Now, userId, postId);
+            await InsertComment(comment);
             ShowComments(postId, chat);
         }        
 
-        private async void InsertComment(Comment comment)
+        private async Task InsertComment(Comment comment)
         {
             string sqlExpression = $"INSERT INTO Comments VALUES({comment.Id}, '{comment.Text}', " +
                 $"'{comment.Time}', {comment.UserId}, {comment.PostId})";
@@ -51,28 +82,14 @@ namespace Vegetarian_Community.Scripts
             }
         }
 
-        public async void ShowComments(int currentPost, ListBox infoBox)
+        public void ShowComments(int currentPost, ListBox infoBox)
         {
-            infoBox.Items.Clear();            
-            var sqlExpression = $"SELECT * FROM Comments WHERE c_posts_ID = {currentPost}";
-            using(var connection = new SqlConnection(_configConnection))
+            infoBox.Items.Clear();
+            var filteredComments = _allComments.Where(comment => comment.PostId == currentPost);
+            foreach(var item in filteredComments)
             {
-                await connection.OpenAsync();
-                var command = new SqlCommand(sqlExpression, connection);
-                using(var reader = command.ExecuteReader())
-                {
-                    while (await reader.ReadAsync())
-                    {
-                        var commentId = reader.GetInt32(0);
-                        var text = reader.GetString(1);
-                        var time = reader.GetDateTime(2);
-                        var userId = reader.GetInt32(3);                        
-
-                        var comment = new Comment(commentId, text, time, userId, currentPost);
-                        infoBox.Items.Add(comment);
-                    }
-                }
-            }            
+                infoBox.Items.Add(item);
+            }                       
         }
 
         public async void RemoveComment(int currentPost, ListBox infoBox)
@@ -86,6 +103,7 @@ namespace Vegetarian_Community.Scripts
                 await command.ExecuteNonQueryAsync();
             }
 
+            _allComments.RemoveAll(tempComment => tempComment.Id == comment.Id);
             ShowComments(currentPost, infoBox);
         }
 
@@ -100,6 +118,7 @@ namespace Vegetarian_Community.Scripts
                 await command.ExecuteNonQueryAsync();
             }
 
+            _allComments.First(tempComment => tempComment.Id == comment.Id).Text = updateText;            
             ShowComments(currentPost, infoBox);
         }
     }

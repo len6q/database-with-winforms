@@ -1,6 +1,6 @@
 ﻿namespace Vegetarian_Community.Scripts
 {
-    public struct Post
+    public sealed class Post
     {
         private int _id;
         private string _text;

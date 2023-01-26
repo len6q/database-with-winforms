@@ -2,7 +2,7 @@
 
 namespace Vegetarian_Community.Scripts
 {
-    public struct Comment
+    public sealed class Comment
     {
         private int _id;
         private string _text;
@@ -21,7 +21,11 @@ namespace Vegetarian_Community.Scripts
 
         public int Id => _id;
 
-        public string Text => _text;
+        public string Text
+        {
+            get { return _text; }
+            set { _text = value; }
+        }
 
         public DateTime Time => _time;
 

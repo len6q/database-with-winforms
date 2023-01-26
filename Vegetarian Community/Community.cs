@@ -6,9 +6,9 @@ namespace Vegetarian_Community
 {
     public partial class Community : Form
     {
-        private UsersCollection _usersCollection = new UsersCollection();
-        private PostsCollection _postsCollection = new PostsCollection();
-        private CommentsCollection _commentsCollection = new CommentsCollection();
+        private UsersCollection _usersCollection;
+        private PostsCollection _postsCollection;
+        private CommentsCollection _commentsCollection;
 
         private AppView _view;
 
@@ -19,10 +19,12 @@ namespace Vegetarian_Community
 
         private void Community_Load(object sender, EventArgs e)
         {
+            _usersCollection = new UsersCollection();
+            _postsCollection = new PostsCollection();
+            _commentsCollection = new CommentsCollection();
             _view = new AppView(_postsCollection, _commentsCollection, l_title_post, info);            
         }
         
-
         private void forwardBtn_Click(object sender, EventArgs e)
         {
             _postsCollection.Move(true);           
@@ -78,17 +80,19 @@ namespace Vegetarian_Community
                     info);
             }
         }
+
+        #region
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }
 
         private void male_CheckedChanged(object sender, EventArgs e)
-        {         
+        {
         }
 
         private void female_CheckedChanged(object sender, EventArgs e)
-        {            
+        {
         }
 
         private void info_SelectedIndexChanged(object sender, EventArgs e)
@@ -110,6 +114,6 @@ namespace Vegetarian_Community
         {
 
         }
-        
+        #endregion
     }  
 }

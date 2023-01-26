@@ -7,7 +7,7 @@ namespace Vegetarian_Community.Scripts
 {
     public sealed class PostsCollection
     {
-        public event Action<string> OnMove;
+        public event Action<string> OnShowPost;
 
         private const string CONNECTION_STRING = "dbConnectionString";
         private readonly string _configConnection = ConfigurationManager.ConnectionStrings[CONNECTION_STRING].ConnectionString;
@@ -18,7 +18,7 @@ namespace Vegetarian_Community.Scripts
 
         public int CurrentPost => _currentPost;
 
-        private int Count
+        private int MaxValue
         {
             get
             {
@@ -53,21 +53,21 @@ namespace Vegetarian_Community.Scripts
 
         public void CreatePost(string title, int userId)
         {
-            var post = new Post(Count, title, userId);
+            var post = new Post(MaxValue, title, userId);
             InsertPost(post);
         }
 
         public void Move(bool isNextDirection = false)
         {
-            if(isNextDirection && _currentPost < Count - 1)
+            if(isNextDirection && _currentPost < MaxValue - 1)
             {                
                 _currentPost++;
-                OnMove?.Invoke(Title);                
+                OnShowPost?.Invoke(Title);                
             }
             else if(isNextDirection == false && _currentPost > 0)
             {                
                 _currentPost--;
-                OnMove?.Invoke(Title);
+                OnShowPost?.Invoke(Title);
             }            
         }
 

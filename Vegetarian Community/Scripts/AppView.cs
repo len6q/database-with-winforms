@@ -16,12 +16,12 @@ namespace Vegetarian_Community.Scripts
             _title = title;
             _box = box;
 
-            _postCollection.OnMove += ShowPost;
+            _postCollection.OnShowPost += ShowPost;
         }
 
         ~AppView()
         {
-            _postCollection.OnMove -= ShowPost;
+            _postCollection.OnShowPost -= ShowPost;
         }
        
         private void ShowPost(string titleText)
