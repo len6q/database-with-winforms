@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
 
 namespace Vegetarian_Community.Scripts
 {
@@ -17,17 +18,29 @@ namespace Vegetarian_Community.Scripts
             _box = box;
 
             _postCollection.OnShowPost += ShowPost;
+            _commentsCollection.OnShowComments += ShowComments;
         }
 
         ~AppView()
         {
             _postCollection.OnShowPost -= ShowPost;
+            _commentsCollection.OnShowComments -= ShowComments;
         }
        
         private void ShowPost(string titleText)
         {
             _title.Text = titleText;
-            _commentsCollection.ShowComments(_postCollection.CurrentPost, _box);
+            ShowComments(_postCollection.CurrentPost);
+        }
+
+        private void ShowComments(int currentPost)
+        {
+            _box.Items.Clear();
+            var filteredComments = _commentsCollection.Collection.Where(comment => comment.PostId == currentPost);
+            foreach (var item in filteredComments)
+            {
+                _box.Items.Add(item);
+            }            
         }
     }
 }

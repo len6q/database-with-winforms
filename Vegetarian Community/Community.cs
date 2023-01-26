@@ -56,8 +56,8 @@ namespace Vegetarian_Community
             _commentsCollection.CreateComment(
                 c_text.Text,
                 Convert.ToInt32(c_user_id.Text),
-                _postsCollection.CurrentPost,
-                info);
+                _postsCollection.CurrentPost
+                );
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
@@ -65,8 +65,8 @@ namespace Vegetarian_Community
             if(info.SelectedItem != null)
             {
                 _commentsCollection.RemoveComment(
-                _postsCollection.CurrentPost,
-                info);
+                    _postsCollection.CurrentPost,
+                    (Comment)info.SelectedItem);
             }            
         }
 
@@ -77,7 +77,7 @@ namespace Vegetarian_Community
                 _commentsCollection.UpdateComment(
                     _postsCollection.CurrentPost,
                     updateText.Text,
-                    info);
+                    (Comment)info.SelectedItem);
             }
         }
 

@@ -4,12 +4,13 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Vegetarian_Community.Scripts
 {
     public sealed class CommentsCollection
-    {        
+    {
+        public event Action<int> OnShowComments;
+
         private const string CONNECTION_STRING = "dbConnectionString";
         private readonly string _configConnection = ConfigurationManager.ConnectionStrings[CONNECTION_STRING].ConnectionString;
 
@@ -19,6 +20,8 @@ namespace Vegetarian_Community.Scripts
         {
             FillBuffer();
         }
+
+        public List<Comment> Collection => _allComments;
 
         private int MaxValue
         {
@@ -62,11 +65,11 @@ namespace Vegetarian_Community.Scripts
             }
         }
 
-        public async void CreateComment(string text, int userId, int postId, ListBox chat)
+        public async void CreateComment(string text, int userId, int postId)
         {
             var comment = new Comment(MaxValue, text, DateTime.Now, userId, postId);
             await InsertComment(comment);
-            ShowComments(postId, chat);
+            OnShowComments?.Invoke(postId);            
         }        
 
         private async Task InsertComment(Comment comment)
@@ -82,20 +85,9 @@ namespace Vegetarian_Community.Scripts
             }
         }
 
-        public void ShowComments(int currentPost, ListBox infoBox)
-        {
-            infoBox.Items.Clear();
-            var filteredComments = _allComments.Where(comment => comment.PostId == currentPost);
-            foreach(var item in filteredComments)
-            {
-                infoBox.Items.Add(item);
-            }                       
-        }
-
-        public async void RemoveComment(int currentPost, ListBox infoBox)
-        {
-            var comment = (Comment)infoBox.SelectedItem;
-            var sqlExpression = $"DELETE Comments WHERE comments_ID = {comment.Id}";
+        public async void RemoveComment(int currentPost, Comment selectedComment)
+        {            
+            var sqlExpression = $"DELETE Comments WHERE comments_ID = {selectedComment.Id}";
             using(var connection = new SqlConnection(_configConnection))
             {
                 await connection.OpenAsync();
@@ -103,14 +95,13 @@ namespace Vegetarian_Community.Scripts
                 await command.ExecuteNonQueryAsync();
             }
 
-            _allComments.RemoveAll(tempComment => tempComment.Id == comment.Id);
-            ShowComments(currentPost, infoBox);
+            _allComments.RemoveAll(tempComment => tempComment.Id == selectedComment.Id);
+            OnShowComments?.Invoke(currentPost);            
         }
 
-        public async void UpdateComment(int currentPost, string updateText, ListBox infoBox)
-        {
-            var comment = (Comment)infoBox.SelectedItem;
-            var sqlExpression = $"UPDATE Comments SET c_text = '{updateText}' WHERE comments_ID = {comment.Id}";
+        public async void UpdateComment(int currentPost, string updateText, Comment selectedComment)
+        {            
+            var sqlExpression = $"UPDATE Comments SET c_text = '{updateText}' WHERE comments_ID = {selectedComment.Id}";
             using(var connection = new SqlConnection(_configConnection))
             {
                 await connection.OpenAsync();
@@ -118,8 +109,8 @@ namespace Vegetarian_Community.Scripts
                 await command.ExecuteNonQueryAsync();
             }
 
-            _allComments.First(tempComment => tempComment.Id == comment.Id).Text = updateText;            
-            ShowComments(currentPost, infoBox);
+            _allComments.First(tempComment => tempComment.Id == selectedComment.Id).Text = updateText;
+            OnShowComments?.Invoke(currentPost);            
         }
     }
 }
