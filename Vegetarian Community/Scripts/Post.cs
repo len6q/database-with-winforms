@@ -2,21 +2,32 @@
 {
     public sealed class Post
     {
-        private int _id;
-        private string _text;
-        private int _userId;
-
+        /// <summary>
+        /// Класс поста
+        /// </summary>
+        /// <param name="currentId">Уникальный идентификатор поста</param>
+        /// <param name="text">Заголовок поста</param>
+        /// <param name="userId">Уникальный идентификатор пользователя, создавшего текущий пост</param>
         public Post(int currentId, string text, int userId)
         {
-            _id = currentId;
-            _text = text;
-            _userId = userId;            
+            Id = currentId;
+            Text = text;
+            UserId = userId;
         }
 
-        public int Id => _id;
+        /// <summary>
+        /// Уникальный идентификатор поста
+        /// </summary>
+        public int Id { get; }
 
-        public string Text => _text;
+        /// <summary>
+        /// Заголовок поста
+        /// </summary>
+        public string Text { get; }
 
-        public int UserId => _userId;
+        /// <summary>
+        /// Уникальный идентификатор пользователя, создавшего текущий пост
+        /// </summary>
+        public int UserId { get; }
     }
 }

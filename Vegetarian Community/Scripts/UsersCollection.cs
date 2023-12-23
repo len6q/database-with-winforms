@@ -9,8 +9,14 @@ namespace Vegetarian_Community.Scripts
     {
         private const string CONNECTION_STRING = "dbConnectionString";
         private readonly string _configConnection = ConfigurationManager.ConnectionStrings[CONNECTION_STRING].ConnectionString;
+        private readonly List<User> _allUsers = new List<User>();
 
-        private List<User> _allUsers = new List<User>();
+        /// <summary>
+        /// Коллекция пользователей
+        /// </summary>
+        public UsersCollection() { }
+
+        #region Properties
 
         private int Count
         {
@@ -30,11 +36,25 @@ namespace Vegetarian_Community.Scripts
             }
         }
 
+        #endregion
+
+        #region Public methods
+
+        /// <summary>
+        /// Создание экземпляра класса <see cref="User"/> и добавление его в базу данных
+        /// </summary>
+        /// <param name="name">Имя пользователя</param>
+        /// <param name="currentSex">Пол пользователя</param>
+        /// <param name="age">Возраст пользователя</param>
         public void CreateUser(string name, string currentSex, int age)
         {
             var user = new User(Count, name, currentSex, age);
             InsertUser(user);
         }
+
+        #endregion
+
+        #region Private methods
 
         private async void InsertUser(User user)
         {
@@ -48,5 +68,7 @@ namespace Vegetarian_Community.Scripts
                 _allUsers.Add(user);
             }
         }
+
+        #endregion
     }
 }

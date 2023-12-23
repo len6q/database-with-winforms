@@ -4,39 +4,48 @@ namespace Vegetarian_Community.Scripts
 {
     public sealed class Comment
     {
-        private int _id;
-        private string _text;
-        private DateTime _time;
-        private int _userId;
-        private int _postId;
-
+        /// <summary>
+        /// Класс комментария
+        /// </summary>
+        /// <param name="currentId">Уникальный идентификатор комментария</param>
+        /// <param name="text">Текст комментария</param>
+        /// <param name="time">Время написания комментария</param>
+        /// <param name="userId">Уникальный идентификатор пользователя, написавшего текущий комментарий</param>
+        /// <param name="postId">Уникальный идентификатор поста, под которым был написан текущий комментарий</param>
         public Comment(int currentId, string text, DateTime time, int userId, int postId)
         {
-            _id = currentId;
-            _text = text;
-            _time = time;
-            _userId = userId;
-            _postId = postId;
+            Id = currentId;
+            Text = text;
+            Time = time;
+            UserId = userId;
+            PostId = postId;
         }
 
-        public int Id => _id;
+        /// <summary>
+        /// Текст комментария
+        /// </summary>
+        public string Text { get; set; }
 
-        public string Text
-        {
-            get { return _text; }
-            set { _text = value; }
-        }
+        /// <summary>
+        /// Уникальный идентификатор комментария
+        /// </summary>
+        public int Id { get; }
 
-        public DateTime Time => _time;
+        /// <summary>
+        /// Время написания комментария
+        /// </summary>
+        public DateTime Time { get; }
 
-        public int UserId => _userId;
+        /// <summary>
+        /// Уникальный идентификатор пользователя, написавшего текущий комментарий
+        /// </summary>
+        public int UserId { get; }
 
-        public int PostId => _postId;
+        /// <summary>
+        /// Уникальный идентификатор поста, под которым был написан текущий комментарий
+        /// </summary>
+        public int PostId { get; }
 
-        public override string ToString()
-        {
-            return $"({ _userId}) : { _text} | { _time}";
-        }
-
+        public override string ToString() => $"({ UserId }) : { Text } | { Time }";
     }
 }

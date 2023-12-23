@@ -2,25 +2,39 @@
 {
     public sealed class User
     {
-        private int _id;
-        private string _name;
-        private string _sex;
-        private int _age;        
-
+        /// <summary>
+        /// Класс пользователя
+        /// </summary>
+        /// <param name="currentId">Уникальный идентификатор пользователя</param>
+        /// <param name="name">Имя пользователя</param>
+        /// <param name="sex">Пол пользователя</param>
+        /// <param name="age">Возраст пользователя</param>
         public User(int currentId, string name, string sex, int age)
         {
-            _id = currentId;
-            _name = name;
-            _sex = sex;
-            _age = age;
+            Id = currentId;
+            Name = name;
+            Sex = sex;
+            Age = age;
         }
 
-        public int Id => _id;
+        /// <summary>
+        /// Уникальный идентификатор пользователя
+        /// </summary>
+        public int Id { get; }
 
-        public string Name => _name;
+        /// <summary>
+        /// Имя пользователя
+        /// </summary>
+        public string Name { get; }
 
-        public string Sex => _sex;
+        /// <summary>
+        /// Пол пользователя
+        /// </summary>
+        public string Sex { get; }
 
-        public int Age => _age;
+        /// <summary>
+        /// Возраст пользователя
+        /// </summary>
+        public int Age { get; }
     }
 }

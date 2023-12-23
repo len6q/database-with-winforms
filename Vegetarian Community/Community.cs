@@ -10,11 +10,9 @@ namespace Vegetarian_Community
         private PostsCollection _postsCollection;
         private CommentsCollection _commentsCollection;
 
-        private AppView _view;
-
         public Community()
         {            
-            InitializeComponent();            
+            InitializeComponent();        
         }
 
         private void Community_Load(object sender, EventArgs e)
@@ -22,25 +20,19 @@ namespace Vegetarian_Community
             _usersCollection = new UsersCollection();
             _postsCollection = new PostsCollection();
             _commentsCollection = new CommentsCollection();
-            _view = new AppView(_postsCollection, _commentsCollection, l_title_post, info);            
+            
+            new App(_postsCollection, _commentsCollection, l_title_post, info);            
         }
         
-        private void forwardBtn_Click(object sender, EventArgs e)
-        {
-            _postsCollection.Move(true);           
-        }
+        private void forwardBtn_Click(object sender, EventArgs e) => _postsCollection.Move(true);           
 
-        private void backBtn_Click(object sender, EventArgs e)
-        {
-            _postsCollection.Move();
-        }
+        private void backBtn_Click(object sender, EventArgs e) => _postsCollection.Move();
 
         private void addUser_Click(object sender, EventArgs e)
         {
-            var currentSex = male.Checked ? "Male" : "Female";
             _usersCollection.CreateUser(
-                name.Text, 
-                currentSex, 
+                name.Text,
+                male.Checked ? "Male" : "Female", 
                 Convert.ToInt32(age.Text));            
         }
 
