@@ -13,6 +13,9 @@ namespace Vegetarian_Community.Scripts
         /// <summary>
         /// Основное приложение, в котором происходит взаимодействие компонентов
         /// </summary>
+        /// <remarks>
+        /// Здесь происходит регистрация событий для корректного отображения представления
+        /// </remarks>
         /// <param name="postsCollection">Коллекция написанных постов</param>
         /// <param name="commentsCollection">Коллекция написанных комментариев</param>
         /// <param name="title">Label заголовка определенного поста</param>

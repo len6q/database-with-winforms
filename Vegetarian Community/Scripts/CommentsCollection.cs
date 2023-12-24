@@ -55,6 +55,17 @@ namespace Vegetarian_Community.Scripts
         /// <summary>
         /// Создание экземпляра класса <see cref="Comment"/> и добавление его в базу данных
         /// </summary>
+        /// <remarks>
+        /// Создает комментарий <see cref="Comment"/>, добавляет его в базу данных и отображает в представлении
+        /// <para>
+        /// <c>Ожидается:</c>
+        /// <para>Данные о комментарии сохраняются в БД, сервер генерирует и отправляет клиенту ответ.</para>
+        /// </para>
+        /// <para>
+        /// <c>Последствия:</c>
+        /// <para>Клиент отображает комментарий в представлении.</para>
+        /// </para>
+        /// </remarks>
         /// <param name="text">Текст комментария</param>
         /// <param name="userId">Уникальный идентификатор пользователя, написавшего текущий комментарий</param>
         /// <param name="postId">Уникальный идентификатор поста, под которым был написан текущий комментарий</param>
@@ -68,8 +79,20 @@ namespace Vegetarian_Community.Scripts
         /// <summary>
         /// Удаление экземпляра класса <see cref="Comment"/> из базы данных
         /// </summary>
+        /// <remarks>
+        /// Удаляет комментарий <see cref="Comment"/> из базы данных и отображает в представлении
+        /// <para>
+        /// <c>Ожидается:</c>
+        /// <para>Данные об изменении сохраняются в БД, сервер генерирует и отправляет клиенту ответ.</para>
+        /// </para>
+        /// <para>
+        /// <c>Последствия:</c>
+        /// <para>Клиент отображает изменения в представлении.</para>
+        /// </para>
+        /// </remarks>
         /// <param name="currentPost">Уникальный идентификатор поста, под которым был написан текущий комментарий</param>
         /// <param name="selectedComment">Экземпляр класса <see cref="Comment"/>, который будет удален</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public async void RemoveComment(int currentPost, Comment selectedComment)
         {
             var sqlExpression = $"DELETE Comments WHERE comments_ID = {selectedComment.Id}";
@@ -85,11 +108,23 @@ namespace Vegetarian_Community.Scripts
         }
 
         /// <summary>
-        /// Редактирование текста экземпляра класса <see cref="Comment"/> и сохранение изменений в базе данных
+        /// Редактирование текста экземпляра класса <see cref="Comment"/> и сохранение изменений в базе данных.
         /// </summary>
+        /// <remarks>
+        /// Редактирование текста комментария <see cref="Comment"/>, сохранение изменений в базе данных и отображение его в представлении.
+        /// <para>
+        /// <c>Ожидается:</c>
+        /// <para>Данные об изменении сохраняются в БД, сервер генерирует и отправляет клиенту ответ.</para>
+        /// </para>
+        /// <para>
+        /// <c>Последствия:</c>
+        /// <para>Клиент отображает изменения в представлении.</para>
+        /// </para>
+        /// </remarks>
         /// <param name="currentPost">Уникальный идентификатор поста, под которым был написан текущий комментарий</param>
         /// <param name="updateText">Новый текст комментария</param>
         /// <param name="selectedComment">Экземпляр класса <see cref="Comment"/>, который будет изменен</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public async void UpdateComment(int currentPost, string updateText, Comment selectedComment)
         {
             var sqlExpression = $"UPDATE Comments SET c_text = '{updateText}' WHERE comments_ID = {selectedComment.Id}";
